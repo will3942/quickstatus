@@ -36,7 +36,7 @@ String constructedjson = "";
 boolean reachedJSON = false;
 
 //SMS & online
-boolean SMSed = false;
+int SMSed = 0;
 
 void setup()
 {
@@ -224,29 +224,29 @@ boolean eatTheBytes(char parsedIpAddr[]) {
 
 void checkOnlineServers() {
   //fookin servers up m8?
-  if (!(SMSed)) {
+  if (!(SMSed >= 5)) {
     if (!(eatTheBytes("78.110.163.98"))) {
       // do we win for "API creativity"?
       if (tclient.connect("api.clickatell.com", 80)) {
-        tclient.println("GET /http/sendmsg?user=beakybal4&password=EaOfSIPLXdfDRI&api_id=3448452&to=447927268623&text=SERVER_ERR%20-%20Unable%20to%20reach%2078.110.163.98&msg_type=SMS_FLASH&FROM=SERVER_STATUS HTTP/1.1");
+        tclient.println("GET http/sendmsg?user=HACKATHON26&password=fGqDeAm3w&api_id=3445633&to=447927268623&text=SERVER_ERR%20-%20Unable%20to%20reach%2078.110.163.98&msg_type=SMS_FLASH&FROM=SERVER_STATUS HTTP/1.1");
         tclient.println("HOST:api.clickatell.com");
         tclient.println();
         delay(200);
         tclient.stop();
         tclient.flush();
-        SMSed = true;
+        SMSed++;
       }
     }
     if (!(eatTheBytes("198.144.189.139"))) {
       // FOOK SAKE WILL YOUR SERVER IS DOWN AGAIN
       if (tclient.connect("api.clickatell.com", 80)) {
-        tclient.println("GET /http/sendmsg?user=beakybal4&password=EaOfSIPLXdfDRI&api_id=3448452&to=447927268623&text=SERVER_ERR%20-%20Unable%20to%20reach%20198.144.189.139&msg_type=SMS_FLASH&FROM=SERVER_STATUS HTTP/1.1");
+        tclient.println("GET /http/sendmsg?user=HACKATHON26&password=fGqDeAm3w&api_id=3445633&to=447927268623&text=SERVER_ERR%20-%20Unable%20to%20reach%20198.144.189.139&msg_type=SMS_FLASH&FROM=SERVER_STATUS HTTP/1.1");
         tclient.println("HOST:api.clickatell.com");
         tclient.println();
         delay(200);
         tclient.stop();
         tclient.flush();
-        SMSed = true;
+        SMSed++;
       }
     }
   }
