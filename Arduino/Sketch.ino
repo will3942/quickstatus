@@ -1,7 +1,6 @@
 #include <Ethernet.h>
 #include <SPI.h>
 #include <ICMPPing.h>
-#include <aJSON.h>
 
 byte mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xAF, 0x91 };
 IPAddress ip(192,168,2,7);
@@ -37,6 +36,14 @@ boolean reachedJSON = false;
 
 //SMS & online
 int SMSed = 0;
+
+//TFL buses
+String concurrentline = "";
+int culinenumber = 0;
+char tfldestination[255];
+char tflroute_name[10];
+char tflestimated_wait[10];
+boolean parsingBuses = false;
 
 void setup()
 {
@@ -178,7 +185,9 @@ void loop()
     delay(1);
     client.stop();
   }
-  checkOnlineServers();
+  if (!(SMSed >= 5)) {
+    checkOnlineServers();
+  }
 }
 
 void printIpAddress() {
@@ -266,10 +275,12 @@ int getTflBikes() {
         constructedjson="";
       }
     }
-    tclient.stop();
-    tclient.flush();
+    delay(50);
     char bikesAvailable[5];
     constructedjson.toCharArray(bikesAvailable, 5);
+    tclient.stop();
+    tclient.flush();
     return (int)atoi(bikesAvailable);
   }
 }
+  
