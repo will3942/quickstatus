@@ -183,7 +183,7 @@ UILabel* thirdExampleTile;
     aFlowLayout.sectionInset = UIEdgeInsetsMake(130, 5, 0, 5);
     [aFlowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     AngelHackLon13CollectionViewController *table = [[AngelHackLon13CollectionViewController alloc]initWithCollectionViewLayout:aFlowLayout];
-    [table.view addSubview:title];
+    [table.collectionView addSubview:title];
     
     [[self navigationController] pushViewController:table animated:YES];
 }
