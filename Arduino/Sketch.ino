@@ -253,6 +253,7 @@ void checkOnlineServers() {
 }
 
 int getTflBikes() {
+  // Boris...MY MAN
   if (tclient.connect("definedcode.com", 1678)) {
     tclient.println("GET /502 HTTP/1.1");
     tclient.println("Host:definedcode.com");   
